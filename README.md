@@ -1,2 +1,2 @@
-# ClowdMemo
+# CloudMemo
 webとスマホで使えるただのメモ
