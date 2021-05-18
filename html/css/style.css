@@ -1,0 +1,1003 @@
+@charset "utf-8";
+/* --- google fontsの読み込み --- */
+@import url("https://fonts.googleapis.com/css?family=Poiret+One&display=swap");
+@import url(slide.css);
+
+
+/* ------ 共通設定 ------*/
+:root {
+   --header-height: 80px;
+   --header-height-s: 60px;
+   --footer-height: 20px;
+   --footer-height-s: 10px;
+   --base-font-size: 14px;
+}
+
+/* --- 全体の設定 ---*/
+html, body,
+#app {
+  width: 100%;
+  height: 100vh;
+  /* min-height: 100%; */
+  margin: 0;
+
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  /* 文字色 */
+  color: #000;
+  /*文字サイズ*/
+  font-size: var(--base-font-size);
+  /*行間*/
+  line-height: 2;
+  /*背景色*/
+  background: #f4f1ee;
+
+  -webkit-text-size-adjust: none;
+}
+
+h1, h2, h3, h4, h5, p,
+ul, ol, li, dl, dt, dd,
+form, input, textarea, figure {
+  margin: 0px;
+  padding: 0px;
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 100%;
+  border-spacing: 0;
+}
+
+iframe {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.contents {
+   /* --- margin-top ---
+      headerが「position:fixed」のため高さを調整
+      style.jsで設定
+   */
+   /* margin-top: var(--header-height); */
+
+   /* header+footer（+文字分）をマイナス */
+   min-height: calc(100% - var(--header-height) - var(--footer-height) - var(--base-font-size)*2);
+}
+
+/* --- リンク --- */
+a {
+  /* リンクテキストの色 */
+  /* color: #7b7978; */
+  color: #000;
+  
+  /* マウスオン時の移り変わるまでの時間設定 */
+  text-decoration: none;
+  transition: 0.4s;
+}
+a:hover {
+  /*マウスオン時の文字色*/
+  /* color: #a59c8f; */
+  color: #000;
+
+  /* マウスオン時に下線を消す設定 */
+  /* text-decoration: none; */
+  text-decoration: underline;
+}
+
+/* --- header （PC用） --- */
+header.site_header {
+   z-index: 3;
+   display: flex;
+  /* スクロールしても固定表示させる */
+   position: fixed;
+   /* 文字の回り込み */
+   flex-wrap: wrap;
+   justify-content: space-between;
+   
+   height: var(--header-height);
+   background: #f8f7f6;
+   border-bottom: 1px solid #a59c8f;
+   width: 100vw;
+}
+
+header .header_logo {
+   padding-left: 10px;
+}
+
+.header_logo img{
+   height: var(--header-height);
+   /* width: auto; */
+   min-width: 120px;
+   transition: 0.4s;
+}
+
+header .header_title {
+   display: flex;
+   margin-right:auto;
+   white-space: nowrap;
+   flex-direction: column;
+   padding-left: 5px;
+   margin-top: auto;
+   font-size: 30px;
+}
+
+.nav_auth {
+   margin: auto 60px 10px 0;
+   vertical-align: bottom;
+}
+
+.nav_menu {
+   display: flex;
+}
+
+.nav_item {
+   margin-left: 20px;
+}
+
+.nav_itemm a {
+   color: #333;
+   text-decoration: none;
+}
+
+/* --- sidenavi （PC用） --- */
+aside.pc {
+  /* スクロールしても固定表示させる */
+  z-index: 2;
+  position: fixed;
+  left: 0px;
+  top: var(--header-height);
+  width: 100px;
+  padding-top: 0.1px;
+  /* height: 100%; */
+  /* header分の100pxを調整 */
+  height: calc(100% - var(--header-height));
+
+  border-right: 1px solid #a59c8f;
+  /* hove時の動き*/
+  transition: 0.5s;
+  background: #f8f7f6;
+}
+
+/* マウスオン時のasideブロック */
+aside.pc:hover {
+  width: 180px;
+  /* 自動でスクロールバーを出す */
+   /* padding: 100px 20px 0 20px; */
+  overflow: auto;
+}
+
+/* --- menuimg：sns含まない部分 --- */
+#menubar li {
+  position: relative;
+}
+/* aタグ */
+#menubar li a {
+  display: block;
+  text-decoration: none;
+  border-bottom: 1px solid #a59c8f;
+  width: auto;
+  height: 100px;
+  /* 文字左側の余白 */
+  padding-left: 70px;
+}
+
+/* 最初のliのみ上線 */
+#menubar li.current a {
+   border-top: 1px solid #a59c8f;
+}
+
+/* マウスオン時 */
+aside:hover #menubar li a:hover {
+  /* 色が20%出た状態 */
+  background-color: rgba(165, 156, 143, 0.2);
+}
+/* テキスト */
+#menubar li a span {
+  /* 非表示 */
+  display: none;
+}
+/* マウスオン時のテキスト */
+aside:hover #menubar li a span {
+  /* 表示 */
+  display: block;
+  /* 上の余白：iconの高さに合わせる */
+  padding-top: 40px;
+}
+
+/* --- アイコン --- */
+/* メニュー用アイコン */
+.menuimg a {
+   display: inline-block;
+   background-position: top 42px  left 40px ;
+   background-repeat: no-repeat;
+   background-size: 20px;
+}
+
+.svg-home a {
+   background-image: url("../images/icon/home1.svg");
+}
+
+.svg-tag a {
+   background-image: url("../images/icon/tag.svg");
+}
+
+.svg-pen a {
+   background-image: url("../images/icon/create.svg");
+}
+
+.svg-pen2 a {
+   background-image: url("../images/icon/edit-2.svg");
+}
+
+
+.svg-mail a {
+   background-image: url("../images/icon/mail.svg");
+}
+
+.svg-login a {
+   background-image: url("../images/icon/log-in.svg");
+}
+
+.svg-light a {
+   background-image: url("../images/icon/lightbulb_outline.svg");
+}
+
+/* スマホ用メニューを表示させない */
+#menubar_s {
+  display: none;
+}
+/* ハンバーガーアイコンを表示させない */
+#menubar_hdr {
+  display: none;
+}
+
+/* --- facebookやtwitterなどのアイコンブロック --- */
+/* iconブロック*/
+aside .icon {
+  text-align: center;
+  border-bottom: 1px solid #a59c8f;
+  padding: 10px 0;
+}
+/* アイコン１個あたり */
+aside .icon li {
+  /* 横並びにさせる指定 */
+  display: inline;
+}
+/* アイコン画像 */
+aside .icon img {
+  /* 画像の幅 */
+  width: 20%;
+}
+
+/* --- contents内部 --- */
+/* main */
+#main {
+  padding: 10px 50px 10px 200px;
+  height: 98%;
+  position: relative;
+}
+
+/* h2タグ */
+#main h2 {
+  clear: both;
+  margin-bottom: 20px;
+  font-size: 24px;
+  /* 文字間隔を少し広くとる */
+  letter-spacing: 0.2em;
+  /* color: #a59c8f; */
+  color: #000;
+}
+/* h2タグの１文字目への指定 */
+#main h2::first-letter {
+  border-left: 3px solid #a59c8f;
+  padding-left: 20px;
+}
+/* h2タグにclass="title"をつけたタイプ */
+#main h2.title {
+  /* google-fonts */
+  font-family: "Poiret One";
+  font-size: 60px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #a59c8f;
+}
+#main h2.title::first-letter {
+  border-left: none;
+  padding-left: 0;
+}
+/* <h2 class="title">内のspanタグ */
+#main h2.title span {
+  display: block;
+  font-size: 16px;
+  float: right;
+  margin-top: 60px;
+}
+/* h3タグ */
+#main h3 {
+  clear: both;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+/* 段落(p)タグ */
+#main p {
+  padding: 0 20px 20px;
+}
+/*他：微調整 */
+#main p + p {
+  margin-top: -5px;
+}
+#main h2 + p,
+#main h3 + p {
+  margin-top: -10px;
+}
+#main section + section {
+  clear: both;
+  padding-top: 40px;
+}
+
+/* --- listブロック（works.htmlで使用） --- */
+/*各ボックスの指定*/
+.list {
+  position: relative;
+  float: left;
+  width: 30%;
+  margin-left: 2.5%;
+  margin-bottom: 20px;
+  background: #000;
+  color: #fff;
+}
+.list a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
+/* リンクを指定した際に右上に出る「→」 */
+.list a::after {
+  /* この文字を出力 */
+  content: "→";
+  position: absolute;
+  /* 右からの配置場所指定 */
+  right: 10px;
+  /* 上からの配置場所指定 */
+  top: 10px;
+  font-size: 14px;
+  /* 行間：widthと揃える */
+  line-height: 30px;
+  /* 幅：line-heightと揃える */
+  width: 30px;
+  /* 角丸の指定 */
+  border-radius: 50%;
+  background: #ccc;
+  color: #000;
+  text-align: center;
+}
+/* figure：画像 */
+.list a figure {
+  /* リンクを指定した際は60%だけ色を出す */
+  opacity: 0.6;
+}
+/*マウスオン時のfigure画像*/
+.list a:hover figure {
+  /* マウスオン時に色を100%出す */
+  opacity: 1;
+}
+/* タイトル */
+.list h4 {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background: #000;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* --- footerブロック --- */
+footer {
+  /* background-color: #89c7de; */
+  /* background-color: crimson; */
+  padding: calc(var(--footer-height)/2) 0;
+  padding-right: 50px;
+  text-align: right;
+}
+footer a {
+  text-decoration: none;
+}
+
+/* --- newsブロック --- */
+
+/* 見出しを含まない部分 */
+#news dl {
+  height: 200px;
+  /* 高さを超えるコンテンツ量部分は非表示に */
+  overflow: hidden;
+}
+/* マウスオン時 */
+#news dl:hover {
+  /* スクロールバーを表示 */
+  overflow: auto;
+}
+/* 日付 */
+#news dt {
+  float: left;
+  width: 9em;
+  /* 文字間隔を少しだけ広くとる */
+  letter-spacing: 0.1em;
+}
+/* 記事 */
+#news dd {
+  /* 日付分の余白を設定 */
+  padding-left: 9em;
+}
+
+/* --- 後回し ---- */
+/* --- テーブル --- */
+/* --- 後回し ---- */
+/*テーブル１行目に入った見出し部分（※caption）*/
+.ta1 caption {
+  border: 1px solid #a59c8f; /*テーブルの枠線の幅、線種、色*/
+  border-bottom: none; /*下線だけ消す*/
+  text-align: left; /*文字を左寄せ*/
+  font-weight: bold; /*太字に*/
+  padding: 10px; /*ボックス内の余白*/
+  background: #a59c8f; /*背景色*/
+  color: #fff; /*文字色*/
+}
+/*テーブルの見出し（※tamidashi）*/
+.ta1 th.tamidashi {
+  width: auto;
+  /*左よせ*/
+  text-align: left;
+  /*背景色*/
+  background: #a59c8f;
+  /*文字色*/
+  color: #fff;
+}
+/*ta1設定*/
+.ta1 {
+  table-layout: fixed;
+  width: 100%;
+  margin: 0 auto 20px;
+}
+.ta1,
+.ta1 td,
+.ta1 th {
+  word-break: break-all;
+  border: 1px solid #a59c8f; /*テーブルの枠線の幅、線種、色*/
+  padding: 10px; /*ボックス内の余白*/
+}
+/*ta1の左側ボックス*/
+.ta1 th {
+  width: 150px; /*幅*/
+  text-align: center; /*センタリング*/
+}
+
+/*ta1設定*/
+.ta2 {
+   table-layout: fixed;
+   width: 100%;
+   margin: 0 auto 20px;
+ }
+.ta2,
+.ta2 td,
+.ta2 th {
+  word-break: break-all;
+  border: 1px solid #a59c8f; /*テーブルの枠線の幅、線種、色*/
+  padding: 10px; /*ボックス内の余白*/
+}
+/*ta1の左側ボックス*/
+.ta2 th {
+   width: 150px; /*幅*/
+   text-align: center; /*センタリング*/
+}
+
+
+/* --- フォーム関連 --- */
+/*ボタン（btn）*/
+input[type="submit"].btn,
+input[type="button"].btn,
+input[type="reset"].btn {
+  padding: 5px 20px;
+   /*上下、左右へのボックス内の余白*/
+  border-radius: 3px;
+   /*角丸のサイズ*/
+  background: #eee; /*背景色*/
+  /* color: #666;  */
+  color: #000; /*文字色*/
+}
+/*マウスオン時のボタン（btn）設定*/
+input[type="submit"].btn:hover,
+input[type="button"].btn:hover,
+input[type="reset"].btn:hover {
+  background: #fff; /*背景色*/
+}
+/*input,textarea共通*/
+input,
+textarea {
+  outline: none;
+  background: transparent;
+  /*枠線の幅、線種、色*/
+  border: 1px solid #ccc;
+  background: #fff;
+  /*文字色*/
+  color: #666;
+  border-radius: 5px;
+}
+/*input,textareaのフォーカス時*/
+input:focus,
+textarea:focus {
+  border: 1px solid #999; /*枠線の幅、線種、色*/
+}
+
+/* --- checkブロック：赤い注意書き ---*/
+p.check {
+  background: #ff0000;
+  color: #fff;
+  padding: 10px 25px !important;
+  margin-bottom: 20px;
+}
+p.check a {
+  color: #fff;
+}
+
+/* --- PAGE TOP（↑）設定 --- */
+/*設定*/
+.nav-fix-pos-pagetop a {
+  /* display: block; */
+  text-decoration: none;
+  text-align: center;
+  z-index: 99;
+  position: fixed;
+  /*ボタンの幅*/
+  width: 40px;
+  /*ボタンの高さ*/
+  line-height: 40px;
+  /*ウィンドウの下から20pxの場所に配置*/
+  bottom: 20px;
+  /*ウィンドウの右から3%の場所に配置*/
+  right: 3%;
+  /*背景色*/
+  background: #a59c8f;
+  /*文字色*/
+  color: #fff;
+  /*円形にする指定*/
+  border-radius: 50%;
+}
+/*マウスオン時の背景色*/
+.nav-fix-pos-pagetop a:hover {
+  background: #fff; /*背景色*/
+  color: #a59c8f; /*文字色*/
+}
+
+/* --- newsの「new」アイコン --- */
+.newicon {
+  background: #f00; /*背景色*/
+  color: #fff; /*文字色*/
+  font-size: 70%; /*文字サイズ*/
+  line-height: 1.5;
+  padding: 2px 5px;
+  border-radius: 2px;
+  margin: 0px 5px;
+  vertical-align: text-top;
+}
+
+/* --- ul.disc,olタグの出力：company --- */
+ul.disc {
+  list-style: disc;
+  padding: 0 20px 20px 45px;
+}
+ol {
+  padding: 0 20px 20px 45px;
+}
+
+/* --- box --- */
+.box {
+  /*背景色（古いブラウザ用）*/
+  background: #fff; 
+  /*背景色。255,255,255は白の事で0.5は色が50%出た状態の事。*/
+  background: rgba(255, 255, 255, 0.5);
+  padding: 5%; /*ボックス内の余白*/
+  margin-bottom: 30px; /*ボックスの下に空けるスペース*/
+  border: 1px solid #d0cac1; /*線の幅、線種、色（古いブラウザ用）*/
+}
+
+/* --- 後回し ---- */
+/* --- その他 ---*/
+/* --- 後回し ---- */
+
+.look {
+  background: #000;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #666;
+  color: #fff;
+}
+.mb15,
+.mb1em {
+  margin-bottom: 15px !important;
+}
+.mb30 {
+  margin-bottom: 30px !important;
+}
+.clear {
+  clear: both;
+}
+.color1,
+.color1 a {
+  color: #a59c8f !important;
+}
+.pr {
+  font-size: 10px;
+}
+.wl {
+  width: 96%;
+}
+.ws {
+  width: 50%;
+}
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
+}
+.f_left {
+  float: left;
+}
+.f-right {
+  float: right;
+}
+.mini1 {
+  font-size: 11px;
+  display: inline-block;
+  line-height: 1.5;
+}
+.sh {
+  display: none;
+}
+#pagetop {
+  display: block;
+  margin-top: -2%;
+  padding-top: 2%;
+}
+
+/* --- 新規登録 --- */
+
+
+
+/* ------------------------
+--- ここからモバイル ---
+------------------------ */
+/* ------ 縦長画面の設定：縦長画像を別途用意 ------ */
+@media screen and (orientation: portrait) {
+}
+
+/* --- 画面幅800px以下 --- */
+@media screen and (max-width: 800px) {
+
+   .contents {
+      /* --- margin-top ---
+         headerが「position:fixed」のため高さを調整
+         style.jsで設定
+      */
+      /* margin-top: var(--header-height-s); */
+      
+      /* header+footer（+文字分）をマイナス */
+      min-height: calc(100% - var(--header-height-s) - var(--footer-height-s) - var(--base-font-size)*2);
+   }
+      
+      /* --- header --- */
+   header.site_header {
+      height: auto;
+   }
+   
+   header .header_logo {
+      padding-left: 0px;
+      margin-bottom: 5px;
+   }
+
+   .header_logo img {
+      height: 50px;
+      min-width: 75px;
+      padding-top: 5px;
+   }
+   
+   header .header_title {
+      padding-left: 5px;
+      font-size: 25px;
+   }
+
+   .nav_auth {
+      margin: auto 70px 5px 0;
+      vertical-align: bottom;
+   }
+   
+
+   /* --- メインメニュー ---*/
+   /*アニメーションのフレーム設定。全100コマアニメーションだと思って下さい。
+透明(opacity: 0;)から色をつける(opacity: 1;)までの指定。*/
+   @keyframes menubar {
+   0% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
+   }
+   /* --- スマホ用メニューブロック --- */
+   #menubar_s {
+   z-index: 3;
+   display: block;
+   position: fixed;
+   top: 0px;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background: rgba(0, 0, 0, 0.8); 
+   border-top: 1px solid #fff;
+
+   /* アニメーショについては考案中 */
+   /* アニメーショ */
+   /*上のkeyframesの名前*/
+   animation-name: menubar;
+   /*アニメーションの実行時間。0.5秒。*/
+   animation-duration: 0.5s;
+   /*待機中は最初のキーフレームを、完了後は最後のキーフレームを維持*/
+   animation-fill-mode: both;
+   }
+   /* navブロックのみの追加指定 */
+   #menubar_s nav {
+   border-bottom: 1px solid #fff; 
+   overflow: auto;
+   }
+   /*メニュー１個あたりの設定*/
+   #menubar_s nav li a {
+   display: block;
+   text-decoration: none;
+   width: 100%;
+   border-bottom: 1px solid #fff; 
+   font-size: 16px; 
+   height: 60px; 
+   color: #fff;
+   }
+   /*最後のnavメニューの下線を消す*/
+   #menubar_s nav li:last-child a {
+   border-bottom: none;
+   }
+   /* テキスト */
+   #menubar_s nav li a span {
+   display: block;
+   padding-top: 15px; 
+   padding-left: 80px;
+   }
+
+   /* メニュー用アイコン */
+   .menuimg a {
+      background-position: top 20px  left 40px ;
+      fill: #ED6C63;
+   }
+
+   /* menuの背景画像の位置 */
+   .menu1 a {
+   background-position: 20px 0px;
+   }
+   /* menu2 */
+   .menu2 a {
+   background-position: 20px -60px;
+   }
+   /* menu3 */
+   .menu3 a {
+   background-position: 20px -120px;
+   }
+   /* menu4 */
+   .menu4 a {
+   background-position: 20px -180px;
+   }
+   /* menu5 */
+   .menu5 a {
+   background-position: 20px -240px;
+   }
+   /* PC用メニューを非表示 */
+   #menubar {
+   display: none;
+   }
+
+   /* --- ハンバーガーメニュー --- */
+   /* メニューブロック */
+   #menubar_hdr {
+   display: block;
+   position: fixed;
+   z-index: 99;
+   top: 10px;
+   right: 10px;
+   }
+      /* アイコン共通設定 */
+   #menubar_hdr.close,
+   #menubar_hdr.open {
+   width: 50px; 
+   height: 50px; 
+   /* 円形 */
+   border-radius: 50%;
+   }
+   /* メニューアイコン */
+   #menubar_hdr.close {
+   background: #a59c8f url(../images/icon_menu.png) no-repeat center top/50px; /*背景色、背景画像の読み込み、画像の上半分（３本マーク）を表示。幅は50px。*/
+   top: 5px; /*配置場所の再指定*/
+   }
+   /* 閉じるアイコン */
+   #menubar_hdr.open {
+   background: #a59c8f url(../images/icon_menu.png) no-repeat center
+      bottom/50px; /*背景色、背景画像の読み込み、画像の下半分（×マーク）を表示。幅は50px。*/
+   top: 5px; /*配置場所の再指定*/
+   }
+
+   /* --- facebookやtwitterなどのアイコンブロック --- */
+   /* アイコンを囲むブロック */
+   aside.sh .icon {
+   clear: left;
+   border-bottom: 1px solid #fff; /*下の線の幅、線種、色*/
+   }
+   /* アイコン画像の設定 */
+   aside.sh .icon img {
+   width: 50px;
+   }
+
+   /* --- mainブロック --- */
+   /*mainブロック*/
+   #main {
+   padding-left: 3%;
+   padding-right: 3%;
+   }
+   /* h2タグ */
+   #main h2 {
+   font-size: 20px; 
+   /* 文字間隔を標準に戻す */
+   letter-spacing: normal; 
+   }
+   /* h2タグにclass="title"をつけた大見出し */
+   #main h2.title {
+   font-size: 30px;
+   /* 見出しの下に空けるスペース */
+   margin-bottom: 20px; 
+   }
+   /*<h2 class="title">内のspanタグ */
+   #main h2.title span {
+   /* 上に空ける余白 */
+   margin-top: 20px; 
+   }
+
+   /* --- footerブロック --- */
+   footer {
+      padding: calc(var(--footer-height)/4) 25px calc(var(--footer-height)/4) 0;;
+      /* padding-bottom: 10px; */
+   }
+   footer .pr {
+   display: block;
+   }
+
+   /* --- newsブロック --- */
+   /*見出しを含まないお知らせブロック*/
+   /* #news dl {
+   overflow: auto;
+   } */
+
+   /* --- その他 --- */
+   .sh {
+   display: block;
+   }
+   .pc {
+   display: none;
+   }
+}
+
+/* ------ --------------------- ------ */
+/* ------ 画面横向き高さ500px以下 ------ */
+/* ------ --------------------- ------ */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+   /* --- メインメニュー：メニューを2列に --- */
+   #menubar_s nav li a {
+      /*左に回り込み*/
+      float: left;
+      width: 50%;
+   }
+}
+
+/* --- 画面幅480px以下の設定 --- */
+@media screen and (max-width: 480px) {
+    /* --- mainブロック --- */
+    /* h2タグ */
+    #main h2 {
+      font-size: 16px;
+    }
+    /* h2タグにclass="title"をつけた大見出し */
+    #main h2.title {
+      font-size: 20px; 
+    }
+    /* <h2 class="title">内にのspanタグ*/
+    #main h2.title span {
+      font-size: 11px;
+      /*上に空ける余白。上下のバランスをここでとります。*/
+      margin-top: 10px; 
+    }
+    /* h3タグ */
+    #main h3 {
+      font-size: 14px;
+    }
+    /* 段落(p)タグ */
+    #main p {
+      padding: 0 10px 20px;
+    }
+    /* 微調整 */
+    #main section + section {
+      padding-top: 20px;
+    }
+
+    /* --- listブロック（works.htmlで使用） --- */
+    /* リンクを指定した際に右上に出る「→」 */
+    .list a::after {
+      right: 2px; 
+      top: 2px;
+      /* 行間。下のwidthと揃える */
+      line-height: 20px;
+      /* 幅：line-heightと揃える*/
+      width: 20px;
+    }
+    /*h4タグ*/
+    .list h4 {
+      padding: 0;
+    }
+
+    /* テーブル（ta1） --- */
+    /* テーブル１行目に入った見出し部分（※caption） */
+    .ta1 caption {
+      padding: 5px;
+    }
+    /* ta1設定 */
+    .ta1,
+    .ta1 td,
+    .ta1 th {
+      padding: 5px;
+    }
+    /* ta1の左側ボックス */
+    .ta1 th {
+      width: 100px;
+    }
+
+    /* --- ul.disc,olタグ --- */
+    ul.disc {
+      list-style: disc;
+      padding: 0 10px 20px 30px;
+    }
+    ol {
+      padding: 0 10px 20px 30px;
+    }
+
+    /* --- その他 --- */
+    .ws,
+    .wl {
+      width: 94%;
+    }
+}
